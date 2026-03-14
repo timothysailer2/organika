@@ -1,3 +1,4 @@
+import { useState } from "react";
 import QuantityPicker from "./QuantityPicker";
 import "../styles/product.css";
 
@@ -5,9 +6,19 @@ function Product(props){
 
     const product = props.data;
 
+    const [quantity,setQuantity] = useState(1);
+
+    const total = product.price * quantity;
+
+    function handleQuantityChange(qty){
+
+        setQuantity(qty);
+
+    }
+
     return(
 
-        <div className="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div className="col-md-3 mb-4">
 
             <div className="product card h-100 shadow">
 
@@ -25,22 +36,24 @@ function Product(props){
                         ${product.price.toFixed(2)}
                     </p>
 
-                    <QuantityPicker />
+                    <QuantityPicker onChange={handleQuantityChange}/>
 
-                    <button
-                        className="btn btn-success mt-2"
-                        onClick={props.onAdd}
-                    >
-                        Add To Cart
-                    </button>
+                    <p className="mt-2">
+
+                        Total: <strong>${total.toFixed(2)}</strong>
+
+                    </p>
 
                 </div>
 
             </div>
 
         </div>
+        
 
     );
+    
+
 }
 
 export default Product;

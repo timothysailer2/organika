@@ -1,27 +1,33 @@
 import { useState } from "react";
-import Catalog from "./components/Catalog";
 import Navbar from "./components/NavBar";
+import Catalog from "./components/Catalog";
+import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App(){
 
-    const [cartCount,setCartCount] = useState(0);
+  const [cartCount,setCartCount] = useState(0);
 
-    function addToCart(){
-        setCartCount(cartCount + 1);
-    }
+  function addToCart(){
 
-    return(
+    setCartCount(cartCount + 1);
 
-        <div>
+  }
 
-            <Navbar cartCount={cartCount}/>
+  return(
 
-            <Catalog onAdd={addToCart}/>
+    <div>
 
-        </div>
+      <Navbar cartCount={cartCount}/>
 
-    );
+      <Catalog onAdd={addToCart}/>
+
+      <Footer/>
+
+    </div>
+
+  );
+
 }
 
 export default App;
